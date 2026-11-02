@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Punnam Naveen — MSc Computer Science, Software Engineering at EPITA Paris. Portfolio: AI engineering, Python, Linux, Docker and software development." />
+  <title>Punnam Naveen // Engineering Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+  <noscript>
+    <style>
+      .nav { display: flex !important; flex-direction: column; position: static; }
+      .nav-toggle { display: none !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">~/</span>
+      <span>punnam<span class="dim">@</span>omarchy</span>
+    </a>
+
+    <nav aria-label="Primary" id="primary-nav">
+      <ul class="nav">
+        <li><a href="#about">01 about</a></li>
+        <li><a href="#skills">02 skills</a></li>
+        <li><a href="#lab">03 lab</a></li>
+        <li><a href="#projects">04 projects</a></li>
+        <li><a href="#contact">05 contact</a></li>
+      </ul>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">MSc Computer Science · Software Engineering · EPITA, Paris</p>
+        <h1>
+          Building software<br />
+          on <span class="accent">Linux</span>, with AI<br />
+          as a tool — not a crutch.
+        </h1>
+        <p class="lede">
+          I'm Punnam Naveen, an MSc Computer Science student at EPITA in Paris.
+          I build software on Linux and I'm working toward AI engineering — with
+          Python, Docker and code I can explain line by line.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View the lab</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-label="Terminal introduction">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-title">punnam@omarchy: ~</span>
+        </div>
+        <pre class="terminal-body" id="terminal-output" aria-live="polite"></pre>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <p class="section-label">01 — about</p>
+      <div class="section-grid">
+        <h2>Engineering, explained plainly.</h2>
+        <div class="prose">
+          <p>
+            I'm studying for an MSc in Computer Science, specialising in Software
+            Engineering, at EPITA in Paris. I work primarily from the terminal and my
+            focus is understanding <em>why</em> a system behaves the way it does —
+            processes, permissions, networking, containers — rather than pasting
+            commands until something works.
+          </p>
+          <p>
+            I use AI coding agents to move faster, but I review what they produce, test
+            it, and take responsibility for the result. The goal is engineering evidence:
+            working deployments and decisions I can defend.
+          </p>
+          <ul class="facts">
+            <li><span>Education</span> MSc Computer Science, Software Engineering — EPITA, Paris</li>
+            <li><span>Environment</span> Omarchy Linux (Arch-based)</li>
+            <li><span>Technical focus</span> AI Engineering · Python · Linux · Docker</li>
+            <li><span>Deployment</span> Docker + Nginx</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <p class="section-label">02 — skills</p>
+      <div class="section-grid">
+        <h2>What I actually use.</h2>
+        <div class="skill-groups">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <ul class="tags">
+              <li>Python</li><li>Java</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Systems &amp; ops</h3>
+            <ul class="tags">
+              <li>Linux</li><li>Docker</li><li>Nginx</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Focus</h3>
+            <ul class="tags">
+              <li>AI Engineering</li><li>Machine Learning</li><li>Software Development</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Workflow</h3>
+            <ul class="tags">
+              <li>AI-assisted development</li><li>Debugging</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB -->
+    <section class="section" id="lab">
+      <p class="section-label">03 — lab</p>
+      <div class="section-grid">
+        <h2>Built to run in a container.</h2>
+        <div class="prose">
+          <p>
+            This portfolio runs on Omarchy Linux and is served by Nginx inside a Docker
+            container. A bind mount connects this project folder on the host to
+            <code>/usr/share/nginx/html</code> in the container, read-only — so an edit
+            here appears on refresh, without rebuilding the image.
+          </p>
+          <p class="note">Status: live on port 8080.</p>
+          <p class="code-line"><code>docker run -d --name my-website -p 8080:80 -v "$PWD":/usr/share/nginx/html:ro nginx</code></p>
+          <div class="diagram" role="img" aria-label="Request flow: browser to host port 8080, to container port 80, to Nginx, to the mounted project folder.">
+            <div class="node">Browser</div>
+            <div class="arrow">→ <span>:8080</span></div>
+            <div class="node">Host</div>
+            <div class="arrow">→ <span>:80</span></div>
+            <div class="node">Nginx</div>
+            <div class="arrow">→ <span>bind mount</span></div>
+            <div class="node accent-node">This folder</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <p class="section-label">04 — projects</p>
+      <div class="section-grid">
+        <h2>Real work, real status.</h2>
+        <div class="cards">
+          <article class="card">
+            <div class="card-head">
+              <h3>Loan Management System</h3>
+              <span class="badge badge-project">project</span>
+            </div>
+            <p>A loan management system built with Java and MySQL.</p>
+            <ul class="tags small">
+              <li>Java</li><li>MySQL</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h3>Liver Cirrhosis Prediction</h3>
+              <span class="badge badge-project">project</span>
+            </div>
+            <p>A machine-learning system that predicts liver cirrhosis.</p>
+            <ul class="tags small">
+              <li>Machine Learning</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h3>Docker Nginx Portfolio</h3>
+              <span class="badge badge-live">live</span>
+            </div>
+            <p>This site: hand-written HTML, CSS and JavaScript, deployed on Omarchy Linux with Docker and Nginx.</p>
+            <ul class="tags small">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Docker</li><li>Nginx</li>
+            </ul>
+          </article>
+        </div>
+        <p class="note">More projects will be added as I build them.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <p class="section-label">05 — contact</p>
+      <div class="section-grid">
+        <h2>Open to internships.</h2>
+        <div class="prose">
+          <p>
+            Looking for software engineering internships where I can work on Linux,
+            backend systems and AI-integrated applications.
+          </p>
+          <ul class="contact-list">
+            <li><span>Email</span> <a href="mailto:naveen.punnam@epita.fr" data-config="school-email">naveen.punnam@epita.fr</a></li>
+            <li><span>Location</span> Paris, France</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built on Omarchy Linux · Hand-written HTML, CSS &amp; JavaScript · <span id="year"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

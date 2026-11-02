@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# Secrets — never commit these
+.env
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+.idea/
+
+# Dependencies (for future Node / Python work)
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
