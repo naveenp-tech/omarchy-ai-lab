@@ -1,0 +1,80 @@
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Preflight static checks
+        run: |
+          set -euo pipefail
+          test -s index.html
+          test -s styles.css
+          test -s script.js
+          grep -q "Punnam Naveen" index.html
+          if grep -nE '(href|src)="/[^/]' index.html; then
+            echo "Absolute root path found: this breaks the /omarchy-ai-lab/ subpath."
+            exit 1
+          fi
+
+      - name: Stage site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp index.html styles.css script.js _site/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+      - name: Verify live site
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          base="${PAGE_URL%/}"
+          ok=0
+          code=000
+          for attempt in 1 2 3 4 5 6; do
+            code="$(curl -sS -o /tmp/live.html -w '%{http_code}' "$base/")" || code=000
+            if [ "$code" = "200" ] && grep -q "Punnam Naveen" /tmp/live.html; then
+              ok=1
+              break
+            fi
+            sleep 10
+          done
+          if [ "$ok" != "1" ]; then
+            echo "Live site did not become ready (last HTTP $code)."
+            exit 1
+          fi
+          for asset in styles.css script.js; do
+            curl -fsS -o /dev/null "$base/$asset"
+          done
+          echo "Verified: $base/"

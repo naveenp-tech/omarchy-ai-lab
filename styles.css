@@ -152,6 +152,12 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
   align-items: start;
 }
 
+/* Grid children default to min-width:auto. A long unbroken line (the Docker
+   command) would then widen the whole page on mobile. Let children shrink;
+   .code-line already scrolls horizontally. */
+.section-grid > *,
+.hero > * { min-width: 0; }
+
 h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; }
 
 h2 {

@@ -1,7 +1,10 @@
 # Naveen // Engineering Lab
 
+**Live:** <https://naveenp-tech.github.io/omarchy-ai-lab/>
+
 Stage 1 of the portfolio roadmap: a hand-written, dependency-free frontend
-(HTML + CSS + JavaScript), served by Nginx in a Docker container.
+(HTML + CSS + JavaScript), served locally by Nginx in a Docker container and
+published publicly with GitHub Pages.
 
 ## Files
 
@@ -10,6 +13,7 @@ Stage 1 of the portfolio roadmap: a hand-written, dependency-free frontend
 | `index.html` | Page structure and content |
 | `styles.css` | Dark, terminal-inspired responsive design |
 | `script.js` | Terminal typing effect, footer year, contact links |
+| `.github/workflows/pages.yml` | Validates and deploys the site to GitHub Pages |
 
 ## Run it locally without Docker
 
@@ -52,9 +56,7 @@ visible after a browser refresh — no rebuild, no restart.
 
 - Public: `naveen.punnam@epita.fr` (shown on the site)
 - The personal address is kept private and is not stored in this repository.
-
-No GitHub account yet — add one to the contact list and the skills section when
-it exists, not before.
+- GitHub: <https://github.com/naveenp-tech>
 
 ## Next stages
 
@@ -62,6 +64,6 @@ it exists, not before.
 2. **Done** — containerised with Docker + Nginx
 3. JavaScript interactivity and a live project dashboard
 4. Python + FastAPI backend, PostgreSQL
-5. GitHub Actions deployment
+5. **Done** — GitHub Actions deployment (GitHub Pages)
 6. AI assistant integration
 7. Monitoring and security hardening
